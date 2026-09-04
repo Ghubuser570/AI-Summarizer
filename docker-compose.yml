@@ -1,0 +1,58 @@
+services:
+  postgres_db:
+    image: pgvector/pgvector:pg15
+    container_name: atlas_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: overlord
+      POSTGRES_PASSWORD: supersecretpassword
+      POSTGRES_DB: atlas_data
+    ports:
+      - "5432:5432"
+    volumes:
+      - atlas_pg_data:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio:latest
+    container_name: atlas_minio
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: overlord
+      MINIO_ROOT_PASSWORD: supersecretpassword
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - atlas_minio_data:/data
+
+  redis:
+    image: redis:alpine
+    container_name: atlas_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: atlas_ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    volumes:
+      - atlas_ollama_data:/root/.ollama
+    environment:
+      # 🛡️ SURGICAL FIX: Force VRAM purge after every single request
+      - OLLAMA_KEEP_ALIVE=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  atlas_pg_data:
+  atlas_minio_data:
+  atlas_ollama_data:
