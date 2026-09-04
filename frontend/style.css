@@ -1,0 +1,127 @@
+:root {
+    --bg-color: #0d1117;
+    --panel-bg: #161b22;
+    --text-primary: #c9d1d9;
+    --accent-color: #58a6ff;
+    --success-color: #238636;
+    --border-color: #30363d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+h1, h2 {
+    color: var(--accent-color);
+    margin: 0 0 15px 0;
+}
+
+.upload-section, .chat-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+input[type="file"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2ea043;
+}
+
+#search-btn {
+    background-color: #1f6feb;
+}
+
+#search-btn:hover {
+    background-color: #388bfd;
+}
+
+.chat-box {
+    height: 350px;
+    overflow-y: auto;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    max-width: 85%;
+    line-height: 1.4;
+}
+
+.user-message {
+    background: var(--border-color);
+    align-self: flex-end;
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.ai-message {
+    background: #0d419d;
+    align-self: flex-start;
+    color: white;
+    border-bottom-left-radius: 0;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.input-area input {
+    margin-bottom: 0;
+}
